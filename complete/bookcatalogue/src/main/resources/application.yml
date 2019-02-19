@@ -1,0 +1,5 @@
+micronaut:
+    application:
+        name: bookcatalogue
+jackson:
+    module-scan: false
