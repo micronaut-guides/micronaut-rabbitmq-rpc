@@ -1,0 +1,76 @@
+Create the `bookcatalogue` microservice:
+
+`mn create-app example.micronaut.bookcatalogue.bookcatalogue`
+
+The previous command creates a folder named `bookcatalogue` and a Micronaut app inside it with
+default package: `example.micronaut.bookcatalogue`.
+
+Modify `build.gradle` to add `rabbitmq` dependency. As we only want to use RabbitMQ to receive requests we can remove
+Micronaut HTTP client and Server.
+
+[source,java]
+.bookcatalogue/build.gradle
+----
+dependencies {
+    ...
+    ..
+    .
+    //compile "io.micronaut:micronaut-http-client"
+    //compile "io.micronaut:micronaut-http-server-netty"
+include::{sourceDir}/bookcatalogue/build.gradle[tag=rabbitmq]
+}
+----
+
+By default Micronaut will connect to a RabbitMQ instance running on `localhost` so it is not necessary to add anything
+to `application.yml`. In case you want to change the configuration, add the following:
+
+[source,yaml]
+.bookcatalogue/src/main/resources/application.yml
+----
+rabbitmq:
+    uri: amqp://localhost:5672
+----
+
+=== Create RabbitMQ exchange, queue and binding
+
+Before being able to send and receive messages using RabbitMQ it is necessary to define the exchange, queue and binding.
+One option is create them directly in the RabbitMQ Admin UI available on `http://localhost:15672`. Use `guest` for both
+username and password.
+
+Another option is create them programatically with Micronaut. Create the class `ChannelPoolListener.java`:
+
+[source,java]
+.bookcatalogue/src/main/java/example/micronaut/bookcatalogue/ChannelPoolListener.java
+----
+include::{sourceDir}/bookcatalogue/src/main/java/example/micronaut/bookcatalogue/ChannelPoolListener.java[]
+----
+<1> Define an exchange named `micronaut`. From the producer point of view everything is sent to the exchange with the
+appropriate routing key.
+<2> Define a queue named `inventory`. The consumer will listen for messages in that queue.
+<3> Define a binding between the exchange and the queue using the routing key `books.inventory`.
+<4> Define a queue named `catalogue`. The consumer will listen for messages in that queue.
+<5> Define a binding between the exchange and the queue using the routing key `books.catalogue`.
+
+NOTE: In this Catalogue Microservice the only necessary element is the `catalogue` queue but it is a good practice to define
+all the elements in the same file and share the file between all the projects.
+
+
+=== Create consumer
+
+Create a `BookCatalogueService` class to handle incoming RPC requests into the `bookcatalogue` microservice:
+
+[source,java]
+.bookcatalogue/src/main/java/example/micronaut/bookcatalogue/BookCatalogueService.java
+----
+include::{sourceDir}/bookcatalogue/src/main/java/example/micronaut/bookcatalogue/BookCatalogueService.java[]
+----
+<1> Annotate the class with `@RabbitListener` to indicate that this bean will consume messages from RabbitMQ.
+<2> Annotate the method with `@Queue`. This listener will listen to messages in `catalogue` queue.
+
+The previous service responds a `List<Book>`. Create the `Book` POJO:
+
+[source,java]
+.bookcatalogue/src/main/java/example/micronaut/bookcatalogue/Book.java
+----
+include::{sourceDir}/bookcatalogue/src/main/java/example/micronaut/bookcatalogue/Book.java[]
+----

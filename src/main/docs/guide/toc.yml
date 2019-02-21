@@ -2,3 +2,6 @@ gettingStarted:
   title: Getting Started
   requirements: What you will need
   solution: Solution
+writingTheApp:
+  title: Writing the App
+  bookcatalogue: Catalogue Microservice
