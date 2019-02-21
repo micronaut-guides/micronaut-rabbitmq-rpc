@@ -6,3 +6,4 @@ writingTheApp:
   title: Writing the App
   bookcatalogue: Catalogue Microservice
   bookinventory: Inventory Microservice
+  bookrecommendation: Recommendation Microservice

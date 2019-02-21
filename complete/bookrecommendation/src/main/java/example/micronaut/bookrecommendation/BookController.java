@@ -4,18 +4,18 @@ import io.micronaut.http.annotation.Controller;
 import io.micronaut.http.annotation.Get;
 import io.reactivex.Flowable;
 
-@Controller("/books")
+@Controller("/books") // <1>
 public class BookController {
 
-    private final CatalogueClient catalogueClient;
-    private final InventoryClient inventoryClient;
+    private final CatalogueClient catalogueClient; // <2>
+    private final InventoryClient inventoryClient; // <2>
 
-    public BookController(CatalogueClient catalogueClient, InventoryClient inventoryClient) {
+    public BookController(CatalogueClient catalogueClient, InventoryClient inventoryClient) { // <2>
         this.catalogueClient = catalogueClient;
         this.inventoryClient = inventoryClient;
     }
 
-    @Get("/")
+    @Get("/") // <3>
     public Flowable<BookRecommendation> index() {
         return catalogueClient.findAll(null)
                 .flatMap(Flowable::fromIterable)
