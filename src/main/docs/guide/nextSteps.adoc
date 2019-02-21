@@ -1,0 +1,2 @@
+Read more about https://micronaut-projects.github.io/micronaut-rabbitmq/latest/guide/#rpc[RabbitMQ RPC support]
+inside Micronaut.

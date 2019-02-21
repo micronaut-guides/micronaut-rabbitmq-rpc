@@ -11,3 +11,5 @@ rabbitmq:
   title: RabbitMQ and Micronaut
   rabbitmqInstall: Install RabbitMQ via Docker
 runningTheApp: Running the app
+nextSteps:
+  title: Next Steps
