@@ -1,0 +1,8 @@
+In this guide, we are going to create three microservices and communicate each other with https://www.rabbitmq.com/[RabbitMQ]
+using the request-response pattern with https://micronaut-projects.github.io/micronaut-rabbitmq/latest/guide/#rpc[RPC].
+
+____
+RabbitMQ is an open-source message-broker software that originally implemented the Advanced Message Queuing Protocol (AMQP)
+and has since been extended with a plug-in architecture to support Streaming Text Oriented Messaging Protocol (STOMP),
+Message Queuing Telemetry Transport (MQTT), and other protocols.
+____
