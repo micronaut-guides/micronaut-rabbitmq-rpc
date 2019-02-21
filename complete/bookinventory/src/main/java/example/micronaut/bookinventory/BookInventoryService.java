@@ -6,10 +6,10 @@ import io.micronaut.configuration.rabbitmq.annotation.RabbitListener;
 import javax.validation.constraints.NotBlank;
 import java.util.Optional;
 
-@RabbitListener
+@RabbitListener // <1>
 public class BookInventoryService {
 
-    @Queue("inventory")
+    @Queue("inventory") // <2>
     public Boolean stock(@NotBlank String isbn) {
         return bookInventoryByIsbn(isbn).map(bi -> bi.getStock() > 0).orElse(null);
     }

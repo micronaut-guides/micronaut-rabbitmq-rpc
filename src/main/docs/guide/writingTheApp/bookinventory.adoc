@@ -1,0 +1,50 @@
+Create the `bookinventory` microservice:
+
+`mn create-app example.micronaut.bookinventory.bookinventory`
+
+The previous command creates a folder named `bookinventory` and a Micronaut app inside it with
+default package: `example.micronaut.bookinventory`.
+
+Modify `build.gradle` to add `rabbitmq` dependency. As we only want to use RabbitMQ to receive requests we can remove
+Micronaut HTTP client and Server.
+
+[source,java]
+.bookinventory/build.gradle
+----
+dependencies {
+    ...
+    ..
+    .
+    //compile "io.micronaut:micronaut-http-client"
+    //compile "io.micronaut:micronaut-http-server-netty"
+include::{sourceDir}/bookinventory/build.gradle[tag=rabbitmq]
+}
+----
+
+
+=== Create RabbitMQ exchange, queue and binding
+
+As we did in `Catalogue` Microservice, create the class `ChannelPoolListener.java` in `bookinventory/src/main/java/example/micronaut/bookcatalogue/ChannelPoolListener.java`
+with the same content as before.
+
+
+=== Create consumer
+
+Create a `BookInventoryService` class to handle incoming RPC requests into the `bookinventory` microservice:
+
+[source,java]
+.bookinventory/src/main/java/example/micronaut/bookinventory/BookInventoryService.java
+----
+include::{sourceDir}/bookinventory/src/main/java/example/micronaut/bookinventory/BookInventoryService.java[]
+----
+<1> Annotate the class with `@RabbitListener` to indicate that this bean will consume messages from RabbitMQ.
+<2> Annotate the method with `@Queue`. This listener will listen to messages in `inventory` queue.
+
+The previous service uses `BookInventory` POJO. Create it:
+
+[source,java]
+.bookinventory/src/main/java/example/micronaut/bookinventory/BookInventory.java
+----
+include::{sourceDir}/bookinventory/src/main/java/example/micronaut/bookinventory/BookInventory.java[]
+----
+
