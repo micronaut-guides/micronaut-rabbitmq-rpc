@@ -13,7 +13,11 @@ public class ChannelPoolListener extends ChannelInitializer {
     @Override
     public void initialize(Channel channel) throws IOException {
         channel.exchangeDeclare("micronaut", BuiltinExchangeType.DIRECT, true);
+
         channel.queueDeclare("inventory", true, false, false, null);
         channel.queueBind("inventory", "micronaut", "books.inventory");
+
+        channel.queueDeclare("catalogue", true, false, false, null);
+        channel.queueBind("catalogue", "micronaut", "books.catalogue");
     }
 }
