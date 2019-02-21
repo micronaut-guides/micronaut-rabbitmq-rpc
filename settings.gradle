@@ -1,0 +1,4 @@
+include 'complete:bookcatalogue'
+include 'complete:bookinventory'
+include 'complete:bookrecommendation'
+
