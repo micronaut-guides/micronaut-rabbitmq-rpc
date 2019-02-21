@@ -37,7 +37,9 @@ include::{sourceDir}/bookrecommendation/src/main/java/example/micronaut/bookreco
 ----
 <1> Send the messages to exchange `micronaut`.
 <2> Set the `replyTo` property to `amq.rabbitmq.reply-to`. This is a special queue that always exists and does not need
-to be created.
+to be created. That it is why we did not create the queue in the `ChannelInitializer`. RabbitMQ uses that queue in a
+special way and setting the value of the property `replyTo` to that queue will enable this call as a RPC one. RabbitMQ
+will create a temporary queue for the callback.
 <3> Set the routing key.
 <4> Define the method that will "mirror" the one in the consumer. Keep in mind that in the consumer it is not possible to
 return a reactive type, but on the client side it is. Also, it is necessary to send something, even if it's not
@@ -52,8 +54,7 @@ Create `InventoryClient.java`:
 include::{sourceDir}/bookrecommendation/src/main/java/example/micronaut/bookrecommendation/InventoryClient.java[]
 ----
 <1> Send the messages to exchange `micronaut`.
-<2> Set the `replyTo` property to `amq.rabbitmq.reply-to`. This is a special queue that always exists and does not need
-to be created.
+<2> Set the `replyTo` property to `amq.rabbitmq.reply-to`.
 <3> Set the routing key.
 <4> Define the method that will "mirror" the one in the consumer. As we did with `CatalogueClient` we use a reactive
 type to wrap the result.
