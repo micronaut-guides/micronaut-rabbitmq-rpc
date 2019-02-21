@@ -7,3 +7,6 @@ writingTheApp:
   bookcatalogue: Catalogue Microservice
   bookinventory: Inventory Microservice
   bookrecommendation: Recommendation Microservice
+rabbitmq:
+  title: RabbitMQ and Micronaut
+  rabbitmqInstall: Install RabbitMQ via Docker
