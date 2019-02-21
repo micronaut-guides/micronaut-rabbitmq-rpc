@@ -1,0 +1,33 @@
+Run `bookinventory` microservice:
+
+[source,bash]
+----
+complete $ ./gradlew bookinventory:run
+
+> Task :bookinventory:run
+13:30:22.426 [main] INFO  io.micronaut.runtime.Micronaut - Startup completed in 942ms. Server Running: 1 active message listeners.
+----
+
+Run `bookcatalogue` microservice:
+
+[source,bash]
+----
+complete $ ./gradlew bookcatalogue:run
+13:31:19.887 [main] INFO  io.micronaut.runtime.Micronaut - Startup completed in 1149ms. Server Running: 1 active message listeners.
+----
+
+Run `bookrecommendation` microservice:
+
+[source,bash]
+----
+complete $ ./gradlew bookrecommendation:run
+13:32:06.045 [main] INFO  io.micronaut.runtime.Micronaut - Startup completed in 1259ms. Server Running: http://localhost:8080
+----
+
+You can run a `curl` command to test the whole application:
+
+[source, bash]
+----
+$ curl http://localhost:8080/books
+[{"name":"Building Microservices"}
+----
