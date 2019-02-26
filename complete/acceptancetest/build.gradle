@@ -17,36 +17,11 @@ dependencyManagement {
 }
 
 dependencies {
-    compile 'org.codehaus.groovy:groovy-all:2.5.6'
-    testCompile 'org.spockframework:spock-core:1.2-groovy-2.5'
+    compile "org.codehaus.groovy:groovy-all:$groovyVersion"
+    testCompile "org.spockframework:spock-core:$spockVersion"
 
     testCompile "io.micronaut:micronaut-runtime-groovy"
     testCompile "io.micronaut:micronaut-http-client"
 }
 
 apply from: "${rootProject.projectDir}/gradle/testVerbose.gradle"
-
-import io.github.httpbuilderng.http.HttpTask
-
-task rabbitMQStatus(type:HttpTask){
-    config {
-        request.uri = 'http://localhost:15672'
-    }
-    get {
-        response.success {
-            logger.quiet('RabbitMQ running')
-        }
-        response.failure {
-            throw new GradleException("RabbitMQ is not runnnig")
-        }
-    }
-}
-
-test.dependsOn(rabbitMQStatus)
-
-rabbitMQStatus.onlyIf {
-    !System.getenv("TRAVIS")
-}
-test.onlyIf {
-    !System.getenv("TRAVIS")
-}
