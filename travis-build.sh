@@ -27,8 +27,8 @@ echo "Starting services"
 ./gradlew --console=plain complete/bookcatalogue:run &
 ./gradlew --console=plain complete/bookinventory:run &
 
-echo "Waiting 30 seconds for microservices to start"
-sleep 30
+echo "Waiting 60 seconds for microservices to start"
+sleep 60
 
 cd complete
 
