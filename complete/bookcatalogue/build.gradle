@@ -40,6 +40,8 @@ dependencies {
     compileOnly "com.oracle.substratevm:svm"
     runtime "io.micronaut:micronaut-graal"
 
+    runtime 'io.micronaut:micronaut-core'
+
     runtime "ch.qos.logback:logback-classic:1.2.3"
     testAnnotationProcessor "io.micronaut:micronaut-inject-java"
     testCompile "org.junit.jupiter:junit-jupiter-api"

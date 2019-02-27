@@ -1,7 +1,10 @@
 package example.micronaut.bookrecommendation;
 
+import io.micronaut.core.annotation.Introspected;
+
 import java.util.Objects;
 
+@Introspected
 public class BookRecommendation {
     private String name;
 

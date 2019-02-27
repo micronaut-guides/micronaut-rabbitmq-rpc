@@ -3,3 +3,4 @@ micronaut:
         name: bookcatalogue
 jackson:
     module-scan: false
+    bean-introspection-module: true

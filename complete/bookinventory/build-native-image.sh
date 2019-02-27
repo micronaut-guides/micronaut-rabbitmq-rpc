@@ -2,11 +2,11 @@
 
 ./gradlew assemble
 
-java -cp build/libs/bookinventory-0.1.jar io.micronaut.graal.reflect.GraalClassLoadingAnalyzer
+#java -cp build/libs/bookinventory-0.1.jar io.micronaut.graal.reflect.GraalClassLoadingAnalyzer
 
 native-image --no-server \
              --class-path build/libs/bookinventory-0.1.jar \
-             -H:ReflectionConfigurationFiles=build/reflect.json \
+             -H:ReflectionConfigurationFiles=reflect.json \
              -H:EnableURLProtocols=http \
              -H:IncludeResources="logback.xml|application.yml" \
              -H:Name=bookinventory \
