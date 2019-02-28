@@ -24,6 +24,10 @@
   "name": "[Lio.micronaut.http.MediaType;",
   "allDeclaredConstructors": true
 }, {
+  "name": "io.micronaut.configuration.rabbitmq.annotation.RabbitClient",
+  "allDeclaredConstructors": true,
+  "allPublicMethods": true
+}, {
   "name": "java.util.ArrayList",
   "allDeclaredConstructors": true
 }]
