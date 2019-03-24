@@ -19,6 +19,15 @@ include::{sourceDir}/bookrecommendation/build.gradle[tag=rabbitmq]
 }
 ----
 
+The previous dependency uses Groovy's string interpolation to resolve the  Micronaut version which is defined in `gradle.properties`:
+
+[source,java]
+.gradle.properties
+----
+include::{sourceDir}/gradle.properties[]
+----
+
+
 === Create RabbitMQ exchange, queue and binding
 
 As we did in `Catalogue` Microservice, create the class `ChannelPoolListener.java` in `bookrecommendation/src/main/java/example/micronaut/bookcatalogue/ChannelPoolListener.java`
