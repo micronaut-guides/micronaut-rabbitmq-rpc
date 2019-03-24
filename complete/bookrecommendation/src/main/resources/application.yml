@@ -1,5 +1,10 @@
 micronaut:
+    server:
+        port: 8080
     application:
         name: bookrecommendation
 jackson:
     module-scan: false
+endpoints:
+    health:
+        enabled: true

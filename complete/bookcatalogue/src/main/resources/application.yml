@@ -1,5 +1,10 @@
 micronaut:
+    server:
+        port: 8081
     application:
         name: bookcatalogue
 jackson:
     module-scan: false
+endpoints:
+    health:
+        enabled: true
