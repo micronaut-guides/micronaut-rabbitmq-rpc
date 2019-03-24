@@ -1,6 +1,4 @@
 micronaut:
-    server:
-        port: 8082
     application:
         name: bookinventory
 jackson:

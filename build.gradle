@@ -1,6 +1,9 @@
+import com.github.jengelman.gradle.plugins.processes.tasks.JavaFork
+
 plugins {
     id "org.aim42.htmlSanityCheck" version "1.1.0"
     id "org.asciidoctor.convert" version "1.5.8.1"
+    id "com.github.johnrengelman.processes" version "0.5.0"
 }
 
 asciidoctorj {
@@ -13,3 +16,62 @@ htmlSanityCheck {
     sourceDir = new File("${project.buildDir}/docs")
 }
 publishGuide.finalizedBy(htmlSanityCheck)
+
+
+subprojects { subProject ->
+
+    final Map<String, Integer> micronautApps = [bookrecommendation: 8080,
+                                        bookinventory: 8082,
+                                        bookcatalogue: 8081]
+    if (micronautApps.keySet().any { n -> subProject.name.endsWith(n)}) {
+
+        afterEvaluate {
+
+            String applicationClass = "example.micronaut.${micronautApps.keySet().find { n -> subProject.name.endsWith(n)}}.Application"
+            task startApp(type: JavaFork) {
+                classpath = sourceSets.main.runtimeClasspath
+                main = applicationClass
+                systemProperty "micronaut.environments", 'acceptance'
+            }
+            startApp.dependsOn assemble
+            task waitUntilAppIsUp(type: example.micronaut.WaitUntilHealthIsUp) {
+                url = "http://localhost:${micronautApps[micronautApps.keySet().find { n -> subProject.name.endsWith(n)}]}"
+            }
+            waitUntilAppIsUp.mustRunAfter 'startApp'
+
+            task stopApp {
+                doLast {
+                    startApp.processHandle.abort()
+                }
+            }
+        }
+    }
+}
+
+task startMicroservices {
+    dependsOn ':complete:bookcatalogue:waitUntilAppIsUp'
+    dependsOn ':complete:bookcatalogue::startApp'
+    dependsOn ':complete:bookinventory:waitUntilAppIsUp'
+    dependsOn ':complete:bookinventory::startApp'
+    dependsOn ':complete:bookrecommendation:waitUntilAppIsUp'
+    dependsOn ':complete:bookrecommendation::startApp'
+}
+
+task stopMicroservices {
+    dependsOn ':complete:bookcatalogue:stopApp'
+    dependsOn ':complete:bookinventory:stopApp'
+    dependsOn ':complete:bookrecommendation:stopApp'
+}
+
+task runAcceptanceTest {
+    dependsOn ':complete:acceptancetest:cleanTest'
+    dependsOn ':complete:acceptancetest:test'
+    runAcceptanceTest.mustRunAfter 'startMicroservices'
+}
+
+task acceptanceTest {
+    group 'verification'
+    dependsOn 'startMicroservices'
+    dependsOn 'runAcceptanceTest'
+    finalizedBy 'stopMicroservices'
+}
