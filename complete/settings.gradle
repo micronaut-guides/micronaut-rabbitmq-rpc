@@ -1,4 +1,0 @@
-include 'bookcatalogue'
-include 'bookinventory'
-include 'bookrecommendation'
-include 'acceptancetest'
