@@ -3,8 +3,6 @@ micronaut:
     port: -1
   application:
     name: bookinventory
-jackson:
-  module-scan: false
 endpoints:
   health:
     enabled: true
