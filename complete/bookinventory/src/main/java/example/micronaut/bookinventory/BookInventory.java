@@ -1,7 +1,10 @@
 package example.micronaut.bookinventory;
 
+import io.micronaut.core.annotation.Introspected;
+
 import java.util.Objects;
 
+@Introspected
 public class BookInventory {
     private String isbn;
     private Integer stock;
