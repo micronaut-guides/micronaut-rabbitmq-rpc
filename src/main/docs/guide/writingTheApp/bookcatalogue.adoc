@@ -21,14 +21,6 @@ include::{sourceDir}/bookcatalogue/build.gradle[tag=rabbitmq]
 }
 ----
 
-The previous dependency uses Groovy's string interpolation to resolve the  Micronaut version which is defined in `gradle.properties`:
-
-[source,java]
-.gradle.properties
-----
-include::{sourceDir}/gradle.properties[]
-----
-
 By default Micronaut will connect to a RabbitMQ instance running on `localhost` so it is not necessary to add anything
 to `application.yml`. In case you want to change the configuration, add the following:
 
