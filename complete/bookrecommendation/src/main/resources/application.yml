@@ -1,8 +1,8 @@
 micronaut:
-    application:
-        name: bookrecommendation
+  application:
+    name: bookrecommendation
 jackson:
-    module-scan: false
+  module-scan: false
 endpoints:
-    health:
-        enabled: true
+  health:
+    enabled: true

@@ -1,10 +1,10 @@
 micronaut:
-    server:
-        port: -1
-    application:
-        name: bookinventory
+  server:
+    port: -1
+  application:
+    name: bookinventory
 jackson:
-    module-scan: false
+  module-scan: false
 endpoints:
-    health:
-        enabled: true
+  health:
+    enabled: true
