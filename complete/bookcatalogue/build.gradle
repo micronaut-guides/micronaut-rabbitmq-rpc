@@ -5,8 +5,8 @@ plugins {
     id "com.github.johnrengelman.shadow" version "4.0.2"
     id "application"
     id "java"
-    id "net.ltgt.apt-eclipse" version "0.20"
-    id "net.ltgt.apt-idea" version "0.20"
+    id "net.ltgt.apt-eclipse" version "0.21"
+    id "net.ltgt.apt-idea" version "0.21"
 }
 
 version "0.1"
