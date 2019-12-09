@@ -1,6 +1,6 @@
 micronaut:
   server:
-    port: -1
+    port: 8081
   application:
     name: bookcatalogue
 endpoints:

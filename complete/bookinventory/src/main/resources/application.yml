@@ -1,6 +1,6 @@
 micronaut:
   server:
-    port: -1
+    port: 8082
   application:
     name: bookinventory
 endpoints:

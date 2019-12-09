@@ -1,3 +1,13 @@
+Configure `bookinventory` to run on port 8082:
+
+[source, yaml]
+.bookinventory/src/main/resources/application.yml
+----
+micronaut:
+  server:
+    port: 8082
+----
+
 Run `bookinventory` microservice:
 
 [source,bash]
@@ -8,6 +18,16 @@ complete $ ./gradlew complete:bookinventory:run
 13:30:22.426 [main] INFO  io.micronaut.runtime.Micronaut - Startup completed in 942ms. Server Running: 1 active message listeners.
 ----
 
+Configure `bookcatalogue` to run on port 8081:
+
+[source, yaml]
+.bookcatalogue/src/main/resources/application.yml
+----
+micronaut:
+  server:
+    port: 8081
+----
+
 Run `bookcatalogue` microservice:
 
 [source,bash]
@@ -15,6 +35,18 @@ Run `bookcatalogue` microservice:
 complete $ ./gradlew complete:bookcatalogue:run
 13:31:19.887 [main] INFO  io.micronaut.runtime.Micronaut - Startup completed in 1149ms. Server Running: 1 active message listeners.
 ----
+
+Configure `bookrecommendation` to run on port 8080:
+
+[source, yaml]
+.bookrecommendation/src/main/resources/application.yml
+----
+micronaut:
+  server:
+    port: 8080
+----
+
+NOTE: 8080 is the default port if you don't specify `micronaut.server.port` property
 
 Run `bookrecommendation` microservice:
 
