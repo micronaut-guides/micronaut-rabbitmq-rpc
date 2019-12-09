@@ -11,6 +11,12 @@ rabbitmq:
   title: RabbitMQ and Micronaut
   rabbitmqInstall: Install RabbitMQ via Docker
 runningTheApp: Running the app
+graal:
+  title: Generate a Micronaut app's Native Image with GraalVM
+  graalchanges: Micronaut + GraalVM changes
+  graalnativeimage: Native Image generation
+  graalexecute: Execute Native Images
+  graaldocker: Native Image generation with Docker
 nextSteps:
   title: Next Steps
 help:

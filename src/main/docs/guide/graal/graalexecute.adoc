@@ -1,0 +1,31 @@
+Execute `bookcatalogue`'s native image:
+
+[source,bash]
+----
+ ./bookcatalogue
+15:05:06.684 [main] INFO  io.micronaut.runtime.Micronaut - Startup completed in 26ms. Server Running: http://localhost:8081
+----
+
+Execute bookinventory native image:
+
+[source,bash]
+----
+ ./bookinventory
+15:06:25.364 [main] INFO  io.micronaut.runtime.Micronaut - Startup completed in 24ms. Server Running: http://localhost:8082
+----
+
+Execute bookrecommendation native image:
+
+[source,bash]
+----
+ ./bookrecommendation
+15:06:25.364 [main] INFO  io.micronaut.runtime.Micronaut - Startup completed in 24ms. Server Running: http://localhost:8080
+----
+
+You can run a `curl` command to test the whole application:
+
+[source, bash]
+----
+$ curl http://localhost:8080/books
+[{"name":"Building Microservices"}
+----

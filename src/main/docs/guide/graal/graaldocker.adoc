@@ -1,0 +1,61 @@
+Alternatively, you can use Docker to construct the GraalVM Native Image.
+
+## Changes to bookcatalogue to generate a GraalVM native image with Docker
+
+Replace `bookcatalogue/Dockerfile` with this content:
+
+[source, bash]
+----
+include::{sourceDir}/bookcatalogue/Dockerfile[]
+----
+
+Add a script `docker-build.sh to run it:
+
+[source, bash]
+----
+include::{sourceDir}/bookcatalogue/docker-build.sh[]
+----
+
+## Changes to bookinventory to generate a GraalVM native image with Docker
+
+Replace `bookinventory/Dockerfile` with this content:
+
+[source, bash]
+----
+include::{sourceDir}/bookinventory/Dockerfile[]
+----
+
+Add a script `docker-build.sh to run it:
+
+[source, bash]
+----
+include::{sourceDir}/bookinventory/docker-build.sh[]
+----
+
+## Changes to bookrecommendation to generate a GraalVM native image with Docker
+
+Replace `bookrecommendation/Dockerfile` with this content:
+
+[source, bash]
+----
+include::{sourceDir}/bookrecommendation/Dockerfile[]
+----
+
+Add a script `docker-build.sh to run it:
+
+[source, bash]
+----
+include::{sourceDir}/bookrecommendation/docker-build.sh[]
+----
+
+## Running native images with docker
+
+You can use docker to run the images:
+
+[source, bash]
+----
+$ docker run -p 8080:8080 bookcatalogue
+$ docker run -p 8081:8081 bookinventory
+$ docker run -p 8081:8081 bookrecommendation
+----
+

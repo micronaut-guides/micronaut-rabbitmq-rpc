@@ -34,6 +34,12 @@ dependencies {
     compile "io.micronaut:micronaut-inject"
     compile "io.micronaut:micronaut-validation"
     compile "io.micronaut:micronaut-runtime"
+    //tag::micronaut-graal[]
+    annotationProcessor "io.micronaut:micronaut-graal"
+    //end::micronaut-graal[]
+    //tag::svm[]
+    compileOnly "org.graalvm.nativeimage:svm:19.3.0"
+    //end::svm[]
     //tag::rabbitmq[]
     compile "io.micronaut.configuration:micronaut-rabbitmq"
     //end::rabbitmq[]
