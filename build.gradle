@@ -27,7 +27,6 @@ subprojects { subProject ->
             task startApp(type: JavaFork) {
                 classpath = sourceSets.main.runtimeClasspath
                 main = applicationClass
-                systemProperty "micronaut.environments", 'acceptance'
             }
             startApp.dependsOn assemble
             task waitUntilAppIsUp(type: example.micronaut.WaitUntilHealthIsUp) {
