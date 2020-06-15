@@ -1,3 +1,5 @@
+include::{commondir}/common-micronautonex.adoc[]
+
 In this guide, we are going to create three microservices and communicate each other with https://www.rabbitmq.com/[RabbitMQ]
 using the request-response pattern with https://micronaut-projects.github.io/micronaut-rabbitmq/latest/guide/#rpc[RPC]
 _(Remote Procedure Call)_.

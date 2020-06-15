@@ -27,8 +27,7 @@ to `application.yml`. In case you want to change the configuration, add the foll
 [source,yaml]
 .bookcatalogue/src/main/resources/application.yml
 ----
-rabbitmq:
-    uri: amqp://localhost:5672
+include::{sourceDir}/bookcatalogue/src/main/resources/application.yml[tag=rabbitmq]
 ----
 
 === Create RabbitMQ exchange, queue and binding

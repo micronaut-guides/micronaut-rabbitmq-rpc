@@ -1,26 +1,28 @@
 plugins {
-  id "io.github.http-builder-ng.http-plugin" version "0.1.1"
-  id "io.spring.dependency-management" version "1.0.6.RELEASE"
-  id 'groovy'
+    id "groovy"
 }
 
 repositories {
-    mavenLocal()
     jcenter()
-    maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
-}
-
-dependencyManagement {
-    imports {
-        mavenBom "io.micronaut:micronaut-bom:$micronautVersion"
-    }
+    maven { url "https://oss.jfrog.org/oss-snapshot-local" }
 }
 
 dependencies {
-    compile "org.codehaus.groovy:groovy-all:$groovyVersion"
-    testCompile "org.spockframework:spock-core:$spockVersion"
+    compileOnly(enforcedPlatform("io.micronaut:micronaut-bom:$micronautVersion"))
+    compileOnly("io.micronaut:micronaut-inject-groovy")
+    implementation("io.micronaut.groovy:micronaut-runtime-groovy")
 
-    testCompile "io.micronaut:micronaut-http-client"
+    testImplementation(enforcedPlatform("io.micronaut:micronaut-bom:$micronautVersion"))
+    testImplementation("org.spockframework:spock-core") {
+        exclude group: "org.codehaus.groovy", module: "groovy-all"
+    }
+    testImplementation "io.micronaut:micronaut-http-client"
 }
 
-apply from: "${project.projectDir}/../../gradle/testVerbose.gradle"
+// use JUnit 5 platform
+test {
+    useJUnitPlatform()
+}
+
+
+apply from: "${rootProject.projectDir}/gradle/testVerbose.gradle"

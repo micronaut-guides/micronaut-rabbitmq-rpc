@@ -1,7 +1,7 @@
 package example.micronaut.bookcatalogue;
 
-import io.micronaut.configuration.rabbitmq.annotation.Queue;
-import io.micronaut.configuration.rabbitmq.annotation.RabbitListener;
+import io.micronaut.rabbitmq.annotation.Queue;
+import io.micronaut.rabbitmq.annotation.RabbitListener;
 
 import java.util.Arrays;
 import java.util.List;

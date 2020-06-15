@@ -1,8 +1,19 @@
 micronaut:
-  server:
-    port: 8081
   application:
     name: bookcatalogue
+---
+#tag::rabbitmq[]
+---
+rabbitmq:
+  uri: amqp://localhost:5672
+#end::rabbitmq[]
+#tag::port[]
+---
+micronaut:
+  server:
+    port: 8081 # <1>
+#end::port[]
+---
 endpoints:
   health:
     enabled: true
